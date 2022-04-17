@@ -1,0 +1,8 @@
+.row{
+  direction: rtl;
+}
+
+.table{
+  direction: rtl;
+  text-align: center;
+}
