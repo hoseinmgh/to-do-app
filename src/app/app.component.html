@@ -1,44 +1,58 @@
-
-
-
-<header style="background: #ffa755;">
+<header style="background: #ffa755">
   <div class="row">
-      <div class="col" style="padding: 10px;text-align: right;margin-right: 20px;background: #dadada;"><span><strong>لیست فعالیت های روزانه {{user()}}</strong></span></div>
+    <div
+      class="col"
+      style="
+        padding: 10px;
+        text-align: right;
+        margin-right: 20px;
+        background: #dadada;
+      "
+    >
+      <span
+        ><strong>لیست فعالیت های روزانه {{ user() }}</strong></span
+      >
+    </div>
   </div>
 </header>
 <div class="row">
-  <div class="col" style="padding: 10px;margin-right: 20px;"><input type="text" style="width: 100%;height: 38px;"></div>
-  <div class="col d-lg-flex justify-content-lg-start" style="padding: 10px;"><button class="btn btn-primary" type="button">ثبت فعالیت</button></div>
+  <div class="col" style="padding: 10px; margin-right: 20px">
+    <input type="text" style="width: 100%; height: 38px" #todo/>
+  </div>
+  <div class="col d-lg-flex justify-content-lg-start" style="padding: 10px">
+    <button class="btn btn-primary" type="button" (click)="taskList.addTask(todo.value)">ثبت فعالیت</button>
+  </div>
 </div>
-<div class="row" style="background: #1de649;">
-  <div class="col" style="padding: 10px;text-align: right;margin-right: 20px;"><span><strong>از {{countAllTask()}} فعالیت {{countCompleted()}} انجام شده </strong><br></span></div>
+<div class="row" style="background: #1de649">
+  <div class="col" style="padding: 10px; text-align: right; margin-right: 20px">
+    <span
+      ><strong
+        >از {{ countAllTask() }} فعالیت {{ countCompleted() }} انجام شده </strong
+      ><br
+    /></span>
+  </div>
 </div>
 
+<table class="table">
+  <thead>
+    <tr>
+      <th style="text-align: center">#</th>
+      <th style="text-align: center">فعالیت</th>
+      <th style="text-align: center">وضعیت</th>
+      <th style="text-align: center">انجام شده؟</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let task of alltasks(); let i = index">
+      <td>{{ i + 1 }}</td>
+      <td>{{task.value}}</td>
+      <td><input type="checkbox" [(ngModel)] = "task.state"/></td>
+      <td [ngSwitch]="task.state">
+        <span *ngSwitchCase="true">بله</span>
+        <span *ngSwitchDefault="false">خیر</span>
+      </td>
 
-  <table class="table">
-      <thead>
-          <tr>
-              <th style="text-align: center;">فعالیت</th>
-              <th style="text-align: center;">وضعیت</th>
-              <th style="text-align: center;">انجام شده؟</th>
-          </tr>
-      </thead>
-      <tbody>
-          <tr>
-              <td style="width: 400px;">پیاده سازی فرم فعالیت ها</td>
-              <td style="width: 113px;text-align: center;"><input type="checkbox"></td>
-              <td style="width: 400px;">بله</td>
-          </tr>
-          <tr>
-              <td>پیاده سازی فایل Html</td>
-              <td style="text-align: center;"><input type="checkbox"></td>
-              <td>خیر</td>
-          </tr>
-          <tr>
-              <td>پیاده سازی فایل ts</td>
-              <td style="text-align: center;"><input type="checkbox"></td>
-              <td>خیر</td>
-          </tr>
-      </tbody>
-  </table>
 
+    </tr>
+  </tbody>
+</table>

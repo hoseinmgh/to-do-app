@@ -25,8 +25,12 @@ export class AppComponent {
     return this.taskList.getCompletedTasks();
   }
 
-  notComppletedTasks(): Task[]{
+  notCompletedTasks(): Task[]{
     return this.taskList.notCompletedTasks();
+  }
+
+  alltasks():Task[]{
+    return this.taskList.getAllTasks();
   }
 
   countCompleted():number{
